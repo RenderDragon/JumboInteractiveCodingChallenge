@@ -29,27 +29,32 @@ var maryGame3 = [3, 7, 18, 21, 37, 38];
 
 var outputLine = name + ' wins a division '
     + division + ' on game #'
-    + gameNumber + ' with matches '
+    + gameNum + ' with matches '
     + matches.toString() + ' in game '
     + currentGame.toString();
 
 // Challenge Logic
 function CheckNumber(inputNumber, matchingNumber) {
     if (inputNumber == matchingNumber) {
+        console.log("Match! Input: " + inputNumber + " Winning: " + matchingNumber);
         return true;
-        console.log("Match! Input:" + inputNumber + " Winning:" + matchingNumber);
     }
     return false;
 };
 
 function CheckGame(ticket, match) {
+    var matches = 0;
     // Iterate through the winning numbers
     for (i = 0; i < match.length; i++) {
         // Check each ticket number against each winning number
         for (i = 0; i < ticket.length; i++) {
-            CheckNumber(ticket[i], match[i]);
+            if(CheckNumber(ticket[i], match[i])) {
+                matches++;
+            }
         }
     }
+    console.log("Matched " + matches + " numbers!");
+    return matches;
 };
 
 function CheckTickets() {
