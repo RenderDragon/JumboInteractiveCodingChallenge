@@ -36,7 +36,6 @@ var outputLine = name + ' wins a division '
 // Challenge Logic
 function CheckNumber(inputNumber, matchingNumber) {
     if (inputNumber == matchingNumber) {
-        console.log("Match! Input: " + inputNumber + " Winning: " + matchingNumber);
         return true;
     }
     return false;
@@ -55,8 +54,6 @@ function CheckGame(ticket, match) {
             }
         }
     }
-    console.log("Matched " + matched + " numbers!");
-    console.log(matching);
     return [matched, matching];
 }
 
@@ -67,34 +64,29 @@ function CheckTickets(inputTicket) {
             matchedGames.push(CheckGame(inputTicket[game], winningNumbers));
         }
     }
-    console.log(matchedGames);
     return matchedGames;
 }
 
 function checkDivision(ticketResults){
     results = [];
+    games = [];
     for(var i in ticketResults){
         results.push((ticketResults[i][0]));
+        games.push((ticketResults[i][1]))
     }
-    console.log(results);
     gameNum = 1 + results.indexOf(Math.max(...results));
-    //matches = ticketResults[gameNum-1][1];
-    matches = (ticketResults[gameNum-1][1]);
+    matches = games[gameNum-1];
     switch(Math.max(...results)){
         case 3:
-            console.log("Division 4");
             division = 4;
             break;
         case 4:
-            console.log("Division 3");
             division = 3;
             break;
         case 5:
-            console.log("Division 2");
             division = 2;
             break;
         case 6:
-            console.log("Division 1");
             division = 1;
             break;
         default:
@@ -105,9 +97,14 @@ function checkDivision(ticketResults){
 
 function runLotto(participant, ticketName){
     name = ticketName;
-    division = checkDivision(participant);
+    division = checkDivision(CheckTickets(participant));
+    currentGame = participant[Object.keys(participant)[gameNum-1]];
+    outputLine = name + ' wins a division '
+    + division + ' on game #'
+    + gameNum + ' with matches '
+    + matches.toString() + ' in game '
+    + currentGame.toString();
     console.log(outputLine);
-
 }
 
 //CheckGame(johnGame1, winningNumbers);
