@@ -43,6 +43,7 @@ function CheckNumber(inputNumber, matchingNumber) {
     return false;
 }
 
+// Checks each of the games of ALL tickets
 function CheckGame(ticket, match) {
     var matched = 0;
     var matching = [];
@@ -59,6 +60,7 @@ function CheckGame(ticket, match) {
     return [matched, matching];
 }
 
+// Gets the games in which matches were found
 function CheckTickets(inputTicket) {
     var matchedGames = [];
     for(var game in inputTicket) {
@@ -69,6 +71,7 @@ function CheckTickets(inputTicket) {
     return matchedGames;
 }
 
+// Assigns a division to the division variable
 function checkDivision(ticketResults){
     results = [];
     games = [];
@@ -97,6 +100,7 @@ function checkDivision(ticketResults){
     return division;
 }
 
+// The actual program
 function runLotto(participant, ticketName){
     name = ticketName;
     division = checkDivision(CheckTickets(participant));
@@ -109,11 +113,5 @@ function runLotto(participant, ticketName){
     console.log(outputLine);
 }
 
-//CheckGame(johnGame1, winningNumbers);
-//CheckGame(johnGame2, winningNumbers);
-//CheckGame(johnGame3, winningNumbers);
-
-//CheckTickets(john);
-//checkDivision(CheckTickets(john));
 runLotto(john, "John");
 runLotto(johnSystem, "John");
