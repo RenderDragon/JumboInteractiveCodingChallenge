@@ -6,10 +6,6 @@
 // To match
 var winningNumbers = [7, 22, 24, 31, 33, 40];
 
-// Tickets
-var john = {johnGame1, johnGame2, johnGame3};
-var mary = { maryGame1, maryGame2, maryGame3 };
-
 // Placeholders for output
 var name = '';
 var division = '';
@@ -27,6 +23,10 @@ var maryGame1 = [2, 22, 13, 24, 32, 39];
 var maryGame2 = [7, 22, 24, 31, 33, 40];
 var maryGame3 = [3, 7, 18, 21, 37, 38];
 
+// Tickets
+var john = {game1: johnGame1, game2: johnGame2, game3: johnGame3};
+var mary = {game1: maryGame1, game2: maryGame2, game3: maryGame3};
+
 var outputLine = name + ' wins a division '
     + division + ' on game #'
     + gameNum + ' with matches '
@@ -40,25 +40,80 @@ function CheckNumber(inputNumber, matchingNumber) {
         return true;
     }
     return false;
-};
+}
 
 function CheckGame(ticket, match) {
-    var matches = 0;
+    var matched = 0;
+    var matching = [];
     // Iterate through the winning numbers
     for (i = 0; i < match.length; i++) {
         // Check each ticket number against each winning number
-        for (i = 0; i < ticket.length; i++) {
-            if(CheckNumber(ticket[i], match[i])) {
-                matches++;
+        for (j = 0; j < ticket.length; j++) {
+            if(CheckNumber(ticket[j], match[i])) {
+                matched++;
+                matching.push(ticket[j]);
             }
         }
     }
-    console.log("Matched " + matches + " numbers!");
-    return matches;
-};
+    console.log("Matched " + matched + " numbers!");
+    console.log(matching);
+    return [matched, matching];
+}
 
-function CheckTickets() {
+function CheckTickets(inputTicket) {
+    var matchedGames = [];
+    for(var game in inputTicket) {
+        if(inputTicket.hasOwnProperty(game)) {
+            matchedGames.push(CheckGame(inputTicket[game], winningNumbers));
+        }
+    }
+    console.log(matchedGames);
+    return matchedGames;
+}
 
-};
+function checkDivision(ticketResults){
+    results = [];
+    for(var i in ticketResults){
+        results.push((ticketResults[i][0]));
+    }
+    console.log(results);
+    gameNum = 1 + results.indexOf(Math.max(...results));
+    //matches = ticketResults[gameNum-1][1];
+    matches = (ticketResults[gameNum-1][1]);
+    switch(Math.max(...results)){
+        case 3:
+            console.log("Division 4");
+            division = 4;
+            break;
+        case 4:
+            console.log("Division 3");
+            division = 3;
+            break;
+        case 5:
+            console.log("Division 2");
+            division = 2;
+            break;
+        case 6:
+            console.log("Division 1");
+            division = 1;
+            break;
+        default:
+            break;
+    }
+    return division;
+}
 
-CheckGame(johnGame1, winningNumbers);
+function runLotto(participant, ticketName){
+    name = ticketName;
+    division = checkDivision(participant);
+    console.log(outputLine);
+
+}
+
+//CheckGame(johnGame1, winningNumbers);
+//CheckGame(johnGame2, winningNumbers);
+//CheckGame(johnGame3, winningNumbers);
+
+//CheckTickets(john);
+//checkDivision(CheckTickets(john));
+runLotto(john, "John");
