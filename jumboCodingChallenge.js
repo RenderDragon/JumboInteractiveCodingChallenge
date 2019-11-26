@@ -17,6 +17,7 @@ var currentGame = [];
 var johnGame1 = [7, 9, 13, 24, 33, 40];
 var johnGame2 = [16, 19, 22, 29, 31, 39];
 var johnGame3 = [1, 7, 18, 22, 30, 36];
+var johnBonusGame1 = [3, 5, 7, 11, 22, 24, 31, 34, 40];
 
 // Mary's Ticket
 var maryGame1 = [2, 22, 13, 24, 32, 39];
@@ -26,6 +27,7 @@ var maryGame3 = [3, 7, 18, 21, 37, 38];
 // Tickets
 var john = {game1: johnGame1, game2: johnGame2, game3: johnGame3};
 var mary = {game1: maryGame1, game2: maryGame2, game3: maryGame3};
+var johnSystem = {game1: johnBonusGame1};
 
 var outputLine = name + ' wins a division '
     + division + ' on game #'
@@ -114,3 +116,4 @@ function runLotto(participant, ticketName){
 //CheckTickets(john);
 //checkDivision(CheckTickets(john));
 runLotto(john, "John");
+runLotto(johnSystem, "John");
