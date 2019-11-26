@@ -1,6 +1,5 @@
-// Attempt 1
 // Jumbo Interactive Coding Challenge
-// Author: Sylvester Soetianto
+// Author: Sylvester Soetiantop
 
 // Objective: Lottery Scoring - score each ticket & return winning tickets / which type were won
 
@@ -115,5 +114,4 @@ function runLotto(participant, ticketName){
 }
 
 runLotto(john, "John");
-runLotto(mary, "Mary");
 runLotto(johnSystem, "John");
